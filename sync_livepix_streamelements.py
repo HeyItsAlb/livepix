@@ -56,36 +56,5 @@ def get_livepix_balance(access_token):
         balance = 0
     return balance
 
-# --- Atualizar contador no StreamElements ---
-def update_streamelements_counter(value):
-    url = f"https://api.streamelements.com/kappa/v2/channels/{STREAMELEMENTS_CHANNEL_ID}/overlays/counters/{STREAMELEMENTS_COUNTER_ID}"
-    headers = {
-        "Authorization": f"Bearer {STREAMELEMENTS_TOKEN}",
-        "Content-Type": "application/json"
-    }
-    payload = {
-        "value": value
-    }
-    response = requests.put(url, headers=headers, json=payload)
-    response.raise_for_status()
-    return response.json()
-
-def main():
-    try:
-        # 1) Obter token OAuth2 LivePix
-        token = get_livepix_token()
-        print("Token LivePix obtido com sucesso.")
-
-        # 2) Consultar saldo
-        balance = get_livepix_balance(token)
-        print(f"Saldo LivePix: {balance}")
-
-        # 3) Atualizar contador StreamElements
-        result = update_streamelements_counter(balance)
-        print("Contador StreamElements atualizado:", result)
-
-    except Exception as e:
-        print("Erro durante a sincronização:", e)
-
 if __name__ == "__main__":
     main()
