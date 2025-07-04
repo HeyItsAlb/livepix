@@ -26,7 +26,7 @@ def get_livepix_token():
     data = {
         "grant_type": "client_credentials",
         "client_id": LIVEPIX_CLIENT_ID,
-        "client_secret": LIVEPIX_CLIENT_SECRET
+        "client_secret": LIVEPIX_CLIENT_SECRET,
         "scope": "wallet.read"
     }
     response = requests.post(url, headers=headers, data=data)
