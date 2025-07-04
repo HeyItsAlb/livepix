@@ -30,9 +30,13 @@ def get_livepix_token():
         "scope": "wallet.read"
     }
     response = requests.post(url, headers=headers, data=data)
-    response.raise_for_status()
+    if response.status_code != 200:
+        print("Status code:", response.status_code)
+        print("Resposta da API:", response.text)
+        response.raise_for_status()
     token_data = response.json()
     return token_data["access_token"]
+
 
 # --- Consultar saldo da carteira LivePix ---
 def get_livepix_balance(access_token):
