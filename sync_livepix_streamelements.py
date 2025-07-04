@@ -35,7 +35,7 @@ def get_livepix_token():
 
 # --- Consultar saldo da carteira LivePix ---
 def get_livepix_balance(access_token):
-    url = "https://api.livepix.gg/v1/wallet/balance"
+    url = "https://api.livepix.gg/v2/wallet"
     headers = {
         "Authorization": f"Bearer {access_token}",
         "Content-Type": "application/json"
