@@ -48,11 +48,13 @@ def get_livepix_balance(access_token):
     }
     response = requests.get(url, headers=headers)
     response.raise_for_status()
+    data = response.json()
     data_list = data.get("data", [])
-if data_list and isinstance(data_list, list):
-    balance = data_list[0].get("balance", 0)
-else:
-    balance = 0
+    if data_list and isinstance(data_list, list):
+        balance = data_list[0].get("balance", 0)
+    else:
+        balance = 0
+    return balance
 
 # --- Atualizar contador no StreamElements ---
 def update_streamelements_counter(value):
