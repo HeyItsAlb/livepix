@@ -19,7 +19,7 @@ if not all([
 
 # --- Obter access token do LivePix (OAuth2) ---
 def get_livepix_token():
-    url = "https://api.livepix.gg/v2/wallet"
+    url = "https://api.livepix.gg/v1/oauth2/token"
     headers = {
         "Content-Type": "application/x-www-form-urlencoded"
     }
@@ -43,6 +43,10 @@ def get_livepix_balance(access_token):
     response = requests.get(url, headers=headers)
     response.raise_for_status()
     data = response.json()
+    # Ajuste aqui se o JSON tiver outro formato
+    balance = data.get("data", {}).get("balance", 0)
+    return balance
+
     # Ajuste conforme estrutura real do JSON retornado pela API
     balance = data.get("data", {}).get("balance", 0)
     return balance
