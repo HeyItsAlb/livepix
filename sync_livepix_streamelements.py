@@ -12,7 +12,7 @@ if not all([LIVEPIX_TOKEN, STREAMELEMENTS_TOKEN, STREAMELEMENTS_CHANNEL_ID, STRE
 
 # --- Função para obter saldo LivePix ---
 def get_livepix_balance():
-    url = "https://api.livepix.gg/v1/wallet/balance"  # Confirmar endpoint exato na doc LivePix
+    url = "https://api.livepix.gg/v2/wallet/BRL/transactions"  # Confirmar endpoint exato na doc LivePix
     headers = {
         "Authorization": f"Bearer {LIVEPIX_TOKEN}",
         "Content-Type": "application/json"
