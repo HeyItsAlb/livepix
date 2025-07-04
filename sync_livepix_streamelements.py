@@ -19,7 +19,7 @@ if not all([
 
 # --- Obter access token do LivePix (OAuth2) ---
 def get_livepix_token():
-    url = "https://api.livepix.gg/v1/oauth2/token"
+    url = "https://api.livepix.gg/v2/wallet"
     headers = {
         "Content-Type": "application/x-www-form-urlencoded"
     }
