@@ -2,8 +2,8 @@ name: Sync LivePix to StreamElements
 
 on:
   schedule:
-    - cron: '*/10 * * * *'  # executa a cada 10 minutos
-  workflow_dispatch:  # permite executar manualmente
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
 
 jobs:
   sync:
@@ -23,7 +23,8 @@ jobs:
 
     - name: Run sync script
       env:
-        LIVEPIX_TOKEN: ${{ secrets.LIVEPIX_TOKEN }}
+        LIVEPIX_CLIENT_ID: ${{ secrets.LIVEPIX_CLIENT_ID }}
+        LIVEPIX_CLIENT_SECRET: ${{ secrets.LIVEPIX_CLIENT_SECRET }}
         STREAMELEMENTS_TOKEN: ${{ secrets.STREAMELEMENTS_TOKEN }}
         STREAMELEMENTS_CHANNEL_ID: ${{ secrets.STREAMELEMENTS_CHANNEL_ID }}
         STREAMELEMENTS_COUNTER_ID: ${{ secrets.STREAMELEMENTS_COUNTER_ID }}
