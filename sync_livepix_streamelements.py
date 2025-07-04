@@ -48,19 +48,18 @@ def get_livepix_balance(access_token):
 
 def main():
     try:
-        # 1) Obter token OAuth2 LivePix
         token = get_livepix_token()
         print("Token LivePix obtido com sucesso.")
 
-        # 2) Consultar saldo
         balance = get_livepix_balance(token)
 
+        # Ajustar valor para reais (dividir por 100)
+        balance_real = balance / 100
+
         # Formatar o saldo em formato monetário brasileiro
-        balance_formatted = f"R$ {balance:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+        balance_formatted = f"R$ {balance_real:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
         print(f"Saldo LivePix: {balance_formatted}")
 
     except Exception as e:
         print("Erro durante a sincronização:", e)
 
-if __name__ == "__main__":
-    main()
