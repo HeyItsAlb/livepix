@@ -24,7 +24,7 @@ def get_livepix_token():
         "Content-Type": "application/x-www-form-urlencoded"
     }
     data = {
-        "grant_type": "client_credentials", "wallet:read",
+        "grant_type": "wallet:read:",
         "client_id": LIVEPIX_CLIENT_ID,
         "client_secret": LIVEPIX_CLIENT_SECRET
     }
