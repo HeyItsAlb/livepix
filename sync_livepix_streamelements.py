@@ -26,8 +26,8 @@ def get_livepix_token():
     data = {
         "grant_type": "client_credentials",
         "client_id": LIVEPIX_CLIENT_ID,
-        "client_secret": LIVEPIX_CLIENT_SECRET,
-        "scope": "wallet.read"
+        "client_secret": LIVEPIX_CLIENT_SECRET
+        # não enviar scope
     }
     response = requests.post(url, headers=headers, data=data)
     if response.status_code != 200:
@@ -36,7 +36,6 @@ def get_livepix_token():
         response.raise_for_status()
     token_data = response.json()
     return token_data["access_token"]
-
 
 # --- Consultar saldo da carteira LivePix ---
 def get_livepix_balance(access_token):
