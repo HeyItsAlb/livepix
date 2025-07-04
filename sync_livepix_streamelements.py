@@ -8,7 +8,7 @@ LIVEPIX_CLIENT_SECRET = os.getenv('LIVEPIX_CLIENT_SECRET')
 if not all([LIVEPIX_CLIENT_ID, LIVEPIX_CLIENT_SECRET]):
     raise Exception("Por favor configure as variáveis de ambiente LIVEPIX_CLIENT_ID e LIVEPIX_CLIENT_SECRET.")
 
-# --- Obter access token do LivePix (OAuth2) ---
+# --- OAuth2 ---
 def get_livepix_token():
     url = "https://oauth.livepix.gg/oauth2/token"
     headers = {
@@ -29,7 +29,7 @@ def get_livepix_token():
     print("Token data completa:", token_data)
     return token_data["access_token"]
 
-# --- Consultar saldo da carteira LivePix ---
+# --- LivePix ---
 def get_livepix_balance(access_token):
     url = "https://api.livepix.gg/v2/wallet"
     headers = {
