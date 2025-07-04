@@ -24,9 +24,10 @@ def get_livepix_token():
         "Content-Type": "application/x-www-form-urlencoded"
     }
     data = {
-        "grant_type": "wallet:read:",
+        "grant_type": "client_credentials",
         "client_id": LIVEPIX_CLIENT_ID,
         "client_secret": LIVEPIX_CLIENT_SECRET
+        "scope": "wallet.read"
     }
     response = requests.post(url, headers=headers, data=data)
     response.raise_for_status()
