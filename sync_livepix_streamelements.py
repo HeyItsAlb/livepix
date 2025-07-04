@@ -55,6 +55,3 @@ def get_livepix_balance(access_token):
     else:
         balance = 0
     return balance
-
-if __name__ == "__main__":
-    main()
