@@ -48,14 +48,11 @@ def get_livepix_balance(access_token):
     }
     response = requests.get(url, headers=headers)
     response.raise_for_status()
-    data = response.json()
-    # Ajuste aqui se o JSON tiver outro formato
-    balance = data.get("data", {}).get("balance", 0)
-    return balance
-
-    # Ajuste conforme estrutura real do JSON retornado pela API
-    balance = data.get("data", {}).get("balance", 0)
-    return balance
+    data_list = data.get("data", [])
+if data_list and isinstance(data_list, list):
+    balance = data_list[0].get("balance", 0)
+else:
+    balance = 0
 
 # --- Atualizar contador no StreamElements ---
 def update_streamelements_counter(value):
