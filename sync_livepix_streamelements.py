@@ -55,3 +55,16 @@ def get_livepix_balance(access_token):
     else:
         balance = 0
     return balance
+
+def main():
+    try:
+        # 1) Obter token OAuth2 LivePix
+        token = get_livepix_token()
+        print("Token LivePix obtido com sucesso.")
+
+        # 2) Consultar saldo
+        balance = get_livepix_balance(token)
+        print(f"Saldo LivePix: {balance}")
+
+if __name__ == "__main__":
+    main()
