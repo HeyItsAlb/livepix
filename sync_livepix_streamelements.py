@@ -54,7 +54,10 @@ def main():
 
         # 2) Consultar saldo
         balance = get_livepix_balance(token)
-        print(f"Saldo LivePix: {balance}")
+
+        # Formatar o saldo em formato monetário brasileiro
+        balance_formatted = f"R$ {balance:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+        print(f"Saldo LivePix: {balance_formatted}")
 
     except Exception as e:
         print("Erro durante a sincronização:", e)
