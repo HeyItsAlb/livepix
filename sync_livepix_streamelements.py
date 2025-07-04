@@ -4,18 +4,9 @@ import requests
 # --- Configurações via variáveis de ambiente ---
 LIVEPIX_CLIENT_ID = os.getenv('LIVEPIX_CLIENT_ID')
 LIVEPIX_CLIENT_SECRET = os.getenv('LIVEPIX_CLIENT_SECRET')
-STREAMELEMENTS_TOKEN = os.getenv('STREAMELEMENTS_TOKEN')
-STREAMELEMENTS_CHANNEL_ID = os.getenv('STREAMELEMENTS_CHANNEL_ID')
-STREAMELEMENTS_COUNTER_ID = os.getenv('STREAMELEMENTS_COUNTER_ID')
 
-if not all([
-    LIVEPIX_CLIENT_ID,
-    LIVEPIX_CLIENT_SECRET,
-    STREAMELEMENTS_TOKEN,
-    STREAMELEMENTS_CHANNEL_ID,
-    STREAMELEMENTS_COUNTER_ID
-]):
-    raise Exception("Por favor configure todas as variáveis de ambiente necessárias.")
+if not all([LIVEPIX_CLIENT_ID, LIVEPIX_CLIENT_SECRET]):
+    raise Exception("Por favor configure as variáveis de ambiente LIVEPIX_CLIENT_ID e LIVEPIX_CLIENT_SECRET.")
 
 # --- Obter access token do LivePix (OAuth2) ---
 def get_livepix_token():
@@ -37,7 +28,6 @@ def get_livepix_token():
     token_data = response.json()
     print("Token data completa:", token_data)
     return token_data["access_token"]
-
 
 # --- Consultar saldo da carteira LivePix ---
 def get_livepix_balance(access_token):
@@ -65,6 +55,9 @@ def main():
         # 2) Consultar saldo
         balance = get_livepix_balance(token)
         print(f"Saldo LivePix: {balance}")
+
+    except Exception as e:
+        print("Erro durante a sincronização:", e)
 
 if __name__ == "__main__":
     main()
