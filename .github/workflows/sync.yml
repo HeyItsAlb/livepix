@@ -1,0 +1,30 @@
+name: Sync LivePix to StreamElements
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'  # executa a cada 10 minutos
+  workflow_dispatch:  # permite executar manualmente
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install requests
+      run: pip install requests
+
+    - name: Run sync script
+      env:
+        LIVEPIX_TOKEN: ${{ secrets.LIVEPIX_TOKEN }}
+        STREAMELEMENTS_TOKEN: ${{ secrets.STREAMELEMENTS_TOKEN }}
+        STREAMELEMENTS_CHANNEL_ID: ${{ secrets.STREAMELEMENTS_CHANNEL_ID }}
+        STREAMELEMENTS_COUNTER_ID: ${{ secrets.STREAMELEMENTS_COUNTER_ID }}
+      run: python sync_livepix_streamelements.py
