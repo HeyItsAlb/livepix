@@ -63,3 +63,7 @@ def main():
     except Exception as e:
         print("Erro durante a sincronização:", e)
 
+if __name__ == "__main__":
+    main()
+
+
